@@ -1,0 +1,855 @@
+\documentclass[a4paper,12pt]{article}
+ \usepackage{amscd,amsmath,amssymb,amsthm,enumerate,indentfirst,longtable}
+\usepackage{mathspec}
+\usepackage{xunicode, xltxtra}
+%\usepackage[russian]{babel}
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+\usepackage{longtable}
+\usepackage{mathptmx}
+\usepackage{authblk}
+\usepackage{caption}
+\captionsetup{font=large,justification=centerlast,labelsep=period}
+\usepackage[unicode]{hyperref}
+\usepackage{datetime}
+\usepackage{graphics}
+\usepackage{afterpage}
+\usepackage{tabularx}
+\usepackage{lastpage}
+\usepackage{totcount}
+
+\newcommand{\No}{\textnumero}
+
+
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\RR}{\mathbb{R}}
+
+
+
+\DeclareMathOperator{\ord}{\mathrm{ord}}
+
+
+
+\DeclareMathOperator{\aitilda}{\widetilde{AI}} %
+\DeclareMathOperator{\ai}{AI} %
+\DeclareMathOperator{\ann}{Ann} %
+\DeclareMathOperator{\dist}{dist} %
+\DeclareMathOperator{\imp}{imp} %
+\DeclareMathOperator{\nl}{nl} %
+\DeclareMathOperator{\tann}{TAnn} %
+\DeclareMathOperator{\wt}{wt} %
+\DeclareMathOperator{\sr}{SR} %
+\DeclareMathOperator{\lfsr}{LFSR} %
+\DeclareMathOperator{\rang}{rang} %
+\DeclareMathOperator{\prop}{Prop} %
+\DeclareMathOperator{\Char}{char}
+\newcommand{\ftwo}{\mathbb{F}_2} %
+\newcommand{\fntwo}{\mathbb{F}_2^n} %
+\newcommand{\fttwo}{\mathbb{F}_2^t} %
+\newcommand{\srf}{\sr(f)} %
+\newcommand{\lfsrf}{\lfsr(\chi,f)} %
+\newcommand{\gotu}{\mathfrak{U}} %
+\newcommand{\gotb}{\mathfrak{B}} %
+\newcommand{\trnsp}[1]{{#1}^{\text{Т}}}
+\newcommand{\const}{\rm const}
+\newcommand{\br}[1]{\left(#1\right)}
+\newcommand{\tr}[1]{\left\langle #1\right\rangle}
+\newcommand{\secpar}{\lambda}
+
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\KK}{\mathcal{K}}
+
+\DeclareMathOperator{\KDF}{\mathtt{KDF}}
+\DeclareMathOperator{\mods}{mods}
+
+\newcommand{\cert}{\mathtt{Cert}}
+\newcommand{\sign}{\mathtt{SGN}}
+\newcommand{\verify}{\mathtt{VERIFY}}
+\DeclareMathOperator{\prf}{\mathtt{prf}}
+\DeclareMathOperator{\mac}{\mathtt{MAC}}
+\DeclareMathOperator{\encrypt}{\mathtt{enc}}
+\DeclareMathOperator{\decrypt}{\mathtt{dec}}
+\DeclareMathOperator{\kdf}{\mathtt{KDF}}
+\newcommand{\id}{\ensuremath{\mathtt{ID}}}
+\newcommand{\ID}{\ensuremath{\mathtt{ID}}}
+\newcommand{\adv}{\ensuremath{\mathcal{M}}}
+\newcommand{\OI}{\ensuremath{\mathtt{OI}}}
+
+
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+\newtheorem{predl}{Предложение}
+\newtheorem{sled}{Следствие}
+\newtheorem{utver}{Утверждение}
+\theoremstyle{definition}
+\newtheorem{remark}{Замечание}
+\newtheorem{task}{Задачи}
+%\newtheorem{algorithm}{Алгоритм}
+\newtheorem{definition}{Определение}
+\newtheorem{example}{Пример}
+\renewcommand{\proofname}{Доказательство}
+\newtheorem{hypo}{Гипотеза}
+\newtheorem{problem}{Задача}
+\renewcommand{\abstractname}{Abstract}
+
+\setromanfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Courier}
+%\setallmainfonts(Cyrillic){Liberation Serif}
+
+
+\newcommand{\mallory}{\ensuremath{\mathfrak{M}} }
+
+%\textwidth=160mm \headheight=0mm \topmargin=0mm \textheight=215mm 
+
+\usepackage{fancyhdr}
+\patchcmd{\chapter}{plain}{empty}{}{}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+\renewcommand{\baselinestretch}{1.35}
+\frenchspacing \sloppy \emergencystretch=5pt\textwidth=170mm \textheight=257mm
+\oddsidemargin=4.6mm \headheight=10mm \footskip=10mm \headsep=10mm \topmargin=-1in \makeatletter
+\renewcommand{\@oddhead}{\ifnum\thepage>1{\hfil\large\thepage\hfil}\fi}
+\renewcommand{\@evenhead}{\ifnum\thepage>1{\hfil\large\thepage\hfil}\fi}
+\pagestyle{fancy}
+\fancyhf
+\lhead{}
+\chead{\ifnum\thepage>1{\hfil\large\thepage\hfil}\fi}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\renewcommand{\Authands}{, }
+ 
+\title{ Протокол выработки общего ключа на основе аппарата изогений суперсингулярных эллиптических кривых \\(проект)}
+\author[1]{С.~Гребнев} 
+\author[2]{П.~Ключарёв}
+\author[3]{А.~Коренева}
+\author[4]{Д.~Кошелев}
+\author[5]{О.~Тараскин}
+\author[3]{А.~Тулебаев}
+\affil[1]{QAPP}
+\affil[2]{МГТУ им.~Н.Э.~Баумана}
+\affil[3]{Код безопасности}
+\affil[4]{ИнфоТеКС}
+\affil[5]{Waves}
+
+\date{02 ноября 2020 г.}
+ 
+\begin{document} 
+
+\maketitle
+
+\renewcommand{\baselinestretch}{1.35}\large
+\section*{Введение}
+
+В настоящем  отчете излагаются  результаты исследований возможностей создания протокола выработки общего ключа   на основе механизма изогений суперсингулярных эллиптических кривых. Предлагаемый протокол основан на схеме де Фео-Яо-Плута \cite{DF}.
+
+
+\section{Основные определения}
+
+В данном разделе кратко приводятся основные сведения о математическом аппарате изогений эллиптических кривых, более подробно см.  монографии \cite{Silverman, Wash}.
+
+\subsection{Базовые определения}
+
+Рассмотрим эллиптическую кривую над  полем $K$, $\Char K\neq2,3$, $E_{a,b}(K): y^2=x^3+ax+b$.
+
+\begin{definition}
+\emph{Кольцо регулярных функций} на кривой: факторкольцо $$\overline{K}[E_{a,b}]=\overline{K}[x,y]/(y^2-x^3-ax-b).$$
+Так как $(y^2-x^3-ax-b)$ неприводим, то в кольце регулярных функций нет делителей нуля.
+Его поле частных $\overline{K}_{a,b}(x,y)$ -- \emph{поле рациональных функций} на $E_{a,b}$.
+\end{definition}
+
+%\begin{definition}
+%Пусть $f(x,y)\in\overline{K}(E_{a,b})$, $(x_0,y_0)\in %E_{a,b}(\overline{K})$ -- класс рациональных функций из поля %$\overline{K}(x,y)$. Скажем, что  $f(x,y)$
+%\emph{определена в точке} $(x_0,y_0)$, если найдется рациональная функция из $\overline{K}(x,y)$, содержащаяся в классе $f(x,y)$ и такая, что ее знаменатель не обращается в $0$ в $(x_0,y_0)$. Тогда определено ее значение, которое называется значением функции $f(x,y)$ в точке $(x_0,y_0)$
+%(определение, очевидно, корректно).
+%\end{definition}
+
+%Аналогично в проективном пространстве -- рассматриваем однородные многочлены.
+
+\begin{definition}
+Пусть $E_{a,b}$, $E_{a_1,b_1}$ -- эллиптические кривые над $K$. \emph{Рациональное отображение} (\emph{морфизм}) $E_{a,b}$ в $E_{a_1,b_1}$ -- отображение вида
+$$
+\psi=\psi(x,y)=(f_1(x,y),f_2(x,y)),
+$$
+где $f_1(x,y),f_2(x,y)\in\overline{K}(E_{a,b})$, такое, что для любой точки $(x_0,y_0)\in E_{a,b}$ такой, где функции определены,
+верно $(f_1(x_0,y_0),f_2(x_0,y_0))\in E_{a_1,b_1}.$
+\end{definition}
+
+%\begin{definition}
+%Если рациональное отображение определено в каждой точке %$E_{a,b}(K)$, то это \emph{морфизм}.
+%\end{definition}
+
+\begin{definition}
+Если $\psi$ -- рациональное отображение и $\psi(\mathcal{O})=\mathcal{O}_1$, то $\psi$ -- \emph{изогения}.
+% (проверить, что $\psi(\mathcal{O})=\mathcal{O}_1$, можно в проективном пр-ве, где нули э.к. -- обычные точки). 
+Если такое отображение существует, то соответствующие кривые называются \emph{изогенными}.
+\end{definition}
+
+\begin{theorem} (Тэйт).
+Две кривые над  конечным полем $K$ изогенны тогда и только тогда, когда порядки их групп равны.
+\end{theorem}
+
+Согласно \cite[2.9]{Wash}, рациональное отображение $\psi(x,y)$, $\psi:E_{a,b}\to E_{a_1,b_1}$ 
+может быть записано в канонической форме $\psi(x,y)=(r_1(x),yr_2(x))$, где $r_1,r_2$ -- рациональные функции.
+
+\begin{definition}
+Изогения называется \emph{сепарабельной}, если $r_1'(x)\neq 0$.
+\end{definition}
+
+Известно, что  $\forall \psi:E\to E'$ -- изогении  существует единственная \emph{дуальная} изогения $\hat{\psi}:E'\to E$ такая, что $\hat{\psi}\circ \psi=[m]_E$ и $\psi\circ\hat{\psi}=[m]_{E'}$, где $m$ -- \emph{степень} изогении.
+
+Если рассмотреть три эллиптические кривые $E,E',E''$ и изогении $\phi,\psi$: $\phi:E\mapsto E'$, $\psi:E'\mapsto E''$,
+то определены \emph{композиции} изогений $\psi\circ\phi:E\mapsto E''$, и $\widehat{\psi\circ\phi}=\hat{\phi}\circ\hat{\psi}$, а также $\deg \psi\circ\phi=\deg\psi \deg\phi$.
+
+С практической точки зрения под изогенией $\varphi$ достаточно понимать пару рациональных функций
+$$
+\frac{N(x)}{D(x)}=\frac{x^n+\cdots+n_1x+n_0}{x^{n-1}+\cdots+d_1x+d_0},
+$$
+где $D(x)$ обращается в $0$ на ядре изогении $\ker(\varphi)$.
+
+
+\begin{definition}
+Морфизм эллиптической кривой в себя -- \emph{эндоморфизм}.
+Эндоморфизмы эллиптической кривой $E(K)$, определенной над полем $K$, образуют кольцо относительно операций сложения (поточечного) и композиции, оно обозначается $End(E)$. 
+\end{definition}
+
+\begin{example}
+\begin{enumerate}
+
+\item $E(_{a,b}(GF(p))$, \emph{эндоморфизм Фробениуса}: $(x,y)\mapsto (x^p,y^p)$
+
+\item $E_{a,b}(K)$, $P=(x,y)\mapsto -P=(x,-y)$ -- эндоморфизм
+
+\item $E_{a,b}\to E_{a,b}, P\mapsto mP$ -- изогения (и эндоморфизм), обозначается $[m]$.
+\end{enumerate}
+\end{example}
+
+Пусть $K=GF(q)$, $\Char (K)=p$. Для $m\in\NN$ обозначим $E_{a,b}[m]$ множество точек $(x,y)\in E_{a,b}(\overline{K})$ таких, что $mP=\mathcal{O}$ -- \emph{группу кручения} кривой $E_{a,b}$. 
+
+\begin{theorem}\label{thx}
+ \begin{enumerate}
+  \item Если $(m,p)=1$, то  $E_{a,b}[m]$ изоморфна $\ZZ/m\ZZ\times \ZZ/m\ZZ$
+  \item группа $E_{a,b}[p^e] $ либо равна $\{\mathcal{O}\}$ для всех $e=1,2,\dots$, %(тогда кривая суперсингулярна), 
+  либо для всех $e$  изоморфна $\ZZ/p^e\ZZ$.  
+ \end{enumerate}
+\end{theorem}
+
+\begin{definition}
+В случае, если группа $E_{a,b}[p^e] $  равна $\{\mathcal{O}\}$ для всех $e=1,2,\dots$, кривая называется \emph{суперсингулярной}.
+\end{definition}
+
+\begin{definition}
+Если кольцо эндоморфизмов $End(E)$, рассматриваемое как $\ZZ$-модуль, имеет ранг 4, то кривая  $E(K)$ называется \emph{суперсингулярной}. 
+\end{definition}
+
+
+Для случая $GF(p)$ суперсингулярные кривые определяются условием $\#E=p+1$. %Отсюда следует, что MOV-степень суперсингулярной кривой относительно любого простого делителя числа $\#E$ равна 2, и задача дискретного логарифмирования в указанной группе сводится к дискретному логарифмированию в $GF(p^2)$. 
+%Поэтому суперсингулярные кривые имеют репутацию <<слабых>> с точки зрения использования в схемах с открытым ключом даже при больших~$p$. 
+
+%\begin{example}Рассмотрим случаи
+
+ %$p\equiv2\bmod 3,\,y^2=x^3+a$; $p=3\bmod4,\,y^2=x^3+x$. %Для этих кривых существует более быстрый вариант алгоритма Миллера \cite{BKLS02}.
+%\end{example}
+
+%% XXX графы изогений
+\begin{definition}
+\emph{Графом изогений} называется граф, множеством вершин которого является множество классов изоморфизма эллиптических кривых. 
+Две различных вершины этого графа соединены ребром тогда и только тогда, когда представители соответствующих классов изоморфизма изогенны.
+\end{definition}
+
+\subsection{Вычисление изогений}
+
+Для построения изогений заданной степени можно воспользоваться формулами Велю \cite{Velu}. 
+
+Итак, пусть имеется эллиптическая кривая, заданная в форме Вейерштрасса ($y^2=x^3+ax+b$) над полем $K$ характеристики, отличной от 2 и 3. Пусть $F$ -- подгруппа $E(K)$ порядка $l$. Тогда изогения с ядром $F$ строится по следующему алгоритму.
+
+\begin{enumerate}
+ \item Разобьем $F\setminus\{\mathcal{O}\}$ на три непересекающихся множества, $F=F_2\cup R_+\cup R_-$, где $F_2$ -- множество точек четного порядка,
+ а $R_+$ и $R_-$ -- разбиение множества точек нечетного порядка так, что $R\in R_+$ тогда и только тогда, когда $-R\in R_-$.
+ \item Определим множество $S$: $S=F_2\cup R_+$.
+ \item Для каждой точки $Q\in S$ будем вычислять
+ $$
+ g_Q^x=3x^2x_Q+a, g_Q^y=-2y_Q
+ $$
+ (здесь $(x_Q,y_Q)$ -- координаты точки $Q$); 
+ если $Q=-Q$, то $v_Q=g_Q^x$, иначе $v_Q=2g_Q^x$;
+ $$
+ u_Q=(g_Q^x)^2
+  $$
+  \item Вычислим
+  $$
+  v=\sum_{Q\in S} v_Q;
+  $$
+  $$
+  w=\sum_{Q\in S} (u_Q+x_Qv_Q).
+  $$
+\item  Коэффициенты изогенной кривой определяются как 
+$$
+a'=a-5v;
+$$
+$$
+b'=b-7w.
+$$
+\item Формулы преобразования координат $(x,y)\mapsto (x',y')$ имеют вид
+$$
+x'=x+\sum_{Q\in S} \left(\frac{v_Q}{x-x_Q}+\frac{u_Q}{(x-x_Q)^2}\right),
+$$
+
+$$
+y'=y+\sum_{Q\in S} \left(u_Q\frac{2y}{(x-x_Q)^3}+v_Q\frac{y-y_Q}{(x-x_Q)^2}-\frac{g_Q^xg_Q^y}{(x-x_Q)^2}\right).
+$$
+  \end{enumerate}
+
+  Трудоемкость алгоритма Велю пропорциональна степени изогении $l$.
+  
+Для случая подгруппы $F$, имеющей порядок $l^e$, можно вычислить соответствующую изогению как композицию $e$ изогений степени $l$:
+пусть $F=\tr{G}$, тогда $\varphi=\varphi_{l-1}\circ\varphi_{l-2}\circ\cdots\circ \varphi_0$, 
+$$\varphi_0:E\to E_1=E/\tr{l^{e-1}G}, G_1=\varphi_0(G);$$
+$$\varphi_i:E_i\to E_{i+1}=E_i/\tr{l^{e-i-1}G_i}, G_{i+1}=\varphi_i(G_i). $$
+  
+Учитывая сказанное, приведем формулы Велю для случаев $l=2,3$.
+
+ \subsubsection*{Случай $l=2$}
+  $P=(X_P,y_P)$ -- точка порядка 2 на $E_{a,b}(GF(p^2))$. Положим $v=3X_P^2+a$, $a'=a-5v$, $b'=b-7vX_P$;
+ $E'(GF(p^2)): Y^2=X^3+a'X+b'$ -- 2-изогенная $E_{a,b}$ кривая, и
+ $$
+ (x,y)\mapsto \left(\frac{v}{x-X_P}+X_P, Y-\frac{vY}{(X-X_P)^2}\right) 
+ $$
+ задает 2-изогению из $E_{a,b}$ в $E'$ с ядром $\tr{P}$. 
+
+   
+ \subsubsection*{Случай $l=3$}
+  $P=(X_P,y_P)$ -- точка порядка 3 на $E_{a,b}(GF(p^2))$. Положим $v=3X_P^2+a$, $u=4Y_P^3$, $a'=a-5v$, $b'=b-7(u+vX_P)$;
+ $E'(GF(p^2)): Y^2=X^3+a'X+b'$ -- 3-изогенная $E_{a,b}$ кривая, и
+ $$
+ (x,y)\mapsto \left(\frac{v}{x-X_P}+\frac{u}{(X-X_P)^2}+X_P, Y\left(1-\frac{v}{(X-X_P)^2}+\frac{2u}{(X-X_P)^3}\right)\right) 
+ $$
+ задает 3-изогению из $E_{a,b}$ в $E'$ с ядром $\tr{P}$. 
+
+  
+  
+\subsection{Изогении между суперсингулярными кривыми}
+
+Напомним, что у двух изоморфных кривых одинаковый $j$-инвариант.
+Из-за того, что построение изоморфизма между кривыми особой сложности не представляет, 
+задача  изогений по сути является задачей про нахождение изогений между различными классами изоморфных кривых (а каждый из этих классов можно представить  соответствующим $j$-инвариантом).
+
+%Первоначально криптографические схемы предлагалось строить на обыкновенных кривых (см. \cite{RoSt}), но позже в этом случае была продемонстрирована эффективная квантовая атака \cite{AntiRoSt}. Поэтому в схемах де Фео-Яо-Плута используются суперсингулярные кривые.
+
+\section{Протокол выработки общего ключа}\label{protodesc}
+
+В протоколе принимают участие два абонента: \emph{инициатор} $A$ и \emph{ответчик} $B$.
+
+\subsection*{Параметры протокола}
+
+Параметрами протокола являются:
+\begin{itemize}
+ \item простое число $p$ вида $ p=l_A^{e_A}l_B^{e_B}\cdot f  \pm 1$, где $l_A,l_B$ -- маленькие простые (например, 2 и 3),
+$(l_A,f)=(l_B,f)=1$;
+\item поле $GF(p^2)$;
+\item суперсингулярная кривая $E_0(GF(p^2))$, мощность группы точек которой равна $(l_A^{e_A}l_B^{e_B}\cdot f)^2$ (\emph{стартовая кривая}). По построению (см. \cite{DF}), $E[l_A^{e_A}]$ содержит $l_A^{e_A-1}(l_A+1)$ циклических подгрупп порядка $l_A^{e_A}$, каждая из которых определяет собственную изогению (т.е. ядром которой она является), аналогичное замечание  верно и для $E[l_B^{e_B}]$.
+\end{itemize}
+
+В основе протокола лежит следующая коммутативная диаграмма:
+\begin{equation}\label{comd}
+\begin{CD}
+ E @>\varphi >> E/\tr{P} \\
+ @V\psi VV @VVV \\
+ E/\tr{Q} @>>> E/\tr{P,Q}
+\end{CD}
+\end{equation}
+где $\varphi, \psi$ -- случайные пути в графах изогений степеней $l_A$, $l_B$ соответственно. Стойкость протокола основана на 
+сложности нахождения пути, соединяющего две вершины в графе.
+
+\subsection*{Протокол выработки общего ключа}
+
+Этот протокол представляет собой вариант схемы Диффи-Хеллмана, реализованный над диаграммой (\ref{comd}). Идея его состоит в том, чтобы абонент $A$ выбирал $\varphi$, а $B$ выбрал $\psi$.
+
+Фиксируем открытые параметры протокола:
+базисы $\{P_A,Q_A\}$ и $\{P_B,Q_B\}$, которые порождают, соответственно, $E_0[l_A^{e_A}]$ и $E_0[l_B^{e_B}]$, т.е. $\tr{P_A,Q_A}=E_0[l_A^{e_A}]$ и $\tr{P_B,Q_B}=E_0[l_B^{e_B}]$.
+
+ Абонент $A$ выбирает  случайный элемент $ n_A\in_R\ZZ/l_A^{e_A}\ZZ$ %,% который одновременно не делится на $l_A$, 
+ и строит изогению $\varphi_A:E_0\to E_A$ с ядром $K_A:=\tr{ P_A+[n_A]Q_A}$.  Абонент $A$  также вычисляет образ $\{\varphi_A(P_B),\varphi_A(Q_B)\}$ и посылает эти точки абоненту $B$ вместе с эллиптической кривой $E_A$ (т.е. ее описанием).
+ 
+ Аналогично, абонент $B$ выбирает   случайный элемент  $ n_B\in_R\ZZ/l_B^{e_B}\ZZ$ %, %который одновременно не делится на $l_B$, 
+ и строит изогению $\varphi_B:E_0\to E_B$ с ядром $K_B:=\tr{ P_B+[n_B]Q_B}$.  Абонент $B$  также вычисляет образ $\{\varphi_B(P_A),\varphi_B(Q_A)\}$ и посылает эти точки абоненту $A$.
+ 
+ Получив от абонента $B$ набор $E_B, \varphi_B(P_A),\varphi_B(Q_A)$, абонент $A$ строит изогению $\varphi'_A:E_B\to E_{AB}$ с ядром $\tr{ \varphi_B(P_A)+[n_A]\varphi_B(Q_A)}$; абонент $B$ выполняет аналогичные действия.
+ В качестве общего ключа  используется $j$-инвариант кривой
+ $$
+ E_{AB}=\varphi'_B(\varphi_A(E_0))=\varphi'_A(\varphi_B(E_0))=E_0/\tr{ P_A+[n_A]Q_A,  P_B+[n_B]Q_B }.
+ $$
+
+\section{Анализ стойкости}\label{analysis}
+
+В рамках этого раздела считаем, что $p=l_A^{e_A}\cdot l_B^{e_B}\cdot f-1$ -- сбалансированное простое (т.е. $l_A^{e_A}\approx l_B^{e_B}\approx p^{1/2}$), $E_0(GF(p^2))$ -- суперсингулярная эллиптическая кривая, базисы $\{P_A,Q_A\}$ и $\{P_B,Q_B\}$
+порождают, соответственно, $E_0[l_A^{e_A}]$ и $E_0[l_B^{e_B}]$, т.е. $\tr{P_A,Q_A}=E_0[l_A^{e_A}]$ и $\tr{P_B,Q_B}=E_0[l_B^{e_B}]$. 
+
+Иногда, для краткости, мы будем опускать индексы $A, B$ и использовать обозначения $l^e$.
+
+\subsection{Формальный анализ}
+
+Основная вычислительная задача, на предположение о сложности которой опирается стойкость предлагаемого протокола, состоит в следующем \cite{DF}.
+
+\begin{problem}\label{problem31} \emph{Вычислительная задача суперсингулярных изогений, Computational Supersingular Isogeny -- CSSI}: пусть $\phi_1: E_0 \to E_1$ -- изогения с ядром
+$R_1 + [n]S_1$, где   $n $ выбрано случайно равновероятно из $\ZZ/l^{e}\ZZ$. По $E_1$ и значениям образов $\phi_1(R_2), \phi_1(S_2)$ найти порождающий элемент группы $\tr{R_1+[n]S_1}$.
+\end{problem}
+
+Можно сформулировать и аналог вычислительной задачи Диффи--Хеллмана для изогений суперсингулярных эллиптических кривых.
+
+\begin{problem}\label{problem32} \emph{Вычислительная задача Диффи--Хеллмана для суперсингулярных изогений, Supersingular Computational Diffie-Hellman --  SSCDH}: 
+пусть $\phi_A: E_0 \to E_A$ -- изогения с ядром $\tr{P_A+[n_A]Q_A}$, где   $n_A $ выбрано случайно равновероятно из $\ZZ/l_A^{e_A}\ZZ$,
+и пусть $\phi_B: E_0 \to E_B$ -- изогения с ядром $\tr{P_B+[n_B]Q_B}$, где   $n_B $ выбрано случайно равновероятно из $\ZZ/l_B^{e_B}\ZZ$,
+По $E_A,E_B$ и значениям образов $\phi_A(P_B), \phi_A(Q_B), \phi_B(P_A), \phi_B(Q_A)$ найти порождающий элемент группы $\tr{P_A+[n_A]Q_A, P_B+[n_B]Q_B}$.
+\end{problem}
+
+Далее, сформулируем аналог распознавательного варианта задачи Диффи--Хеллмана: 
+
+ \begin{problem}\label{problem8} \emph{Распознавательная задача суперсингулярных изогений, Supersingular Decisonal Diffie--Hellman -- SSDDH}: пусть задан набор , выбранный с вероятностью $1/2$ из одного из следующих распределений
+\begin{itemize}
+\item $(E_A,E_B,\varphi_A(P_B), \varphi_A(Q_B), \varphi_B(P_A), \varphi_B(Q_A),E_{AB})$, где\\ $(E_A,E_B,\varphi_A(P_B), \varphi_A(Q_B), \varphi_B(P_A), \varphi_B(Q_A))$ -- как в предыдущем определении,
+$$
+E_{AB} \cong E_0/\tr{P_A+[n]Q_A, P_B+[n]Q_B};
+$$
+\item $(E_A,E_B,\varphi_A(P_B), \varphi_A(Q_B), \varphi_B(P_A), \varphi_B(Q_A),E_{C})$, где\\  $(E_A,E_B,\varphi_A(P_B), \varphi_A(Q_B), \varphi_B(P_A), \varphi_B(Q_A))$ --  как в предыдущем определении,  
+$$
+E_C \cong E_0/\tr{P_A+[n']Q_A, P_B+[n']Q_B}
+$$
+где $ n'$ выбрано случайно из $\ZZ/l_B^{e_B}\ZZ$);
+\end{itemize}
+определить, из какого распределения выбран указанный набор. 
+\end{problem}
+
+Редукция задачи SSCDH к SSCI очевидна, в обратном направлении -- неизвестна, как и в случае с задачей Диффи--Хеллмана и дискретного логарифмирования в абелевой группе.
+
+Далее, напомним, следуя \cite{DF}, основные положения модели Канетти--Кравчика из \cite{CK}.
+
+Рассмотрим конечное множество абонентов $P_1,\dots,P_n$, моделируемых вероятностными алгоритмами. Противник $\mathcal{I}$, который также моделируется вероятностным алгоритмом,
+контролирует все коммуникации между абонентами (с тем исключением, что противник не может вставлять или модифицировать сообщения -- кроме сообщений от нечестных абонентов).
+Любое сообщение может быть доставлено лишь один раз. Абоненты передают исходящие сообщения противнику, который контролирует их доставку, через запрос $\mathtt{Send}$. Абоненты
+активируются запросом $\mathtt{Send}$, и таким образом противник контролирует создание сеансов протокола. Два сеанса $s$ и $s'$ являются \emph{соответствующими (matching)}, если
+исходящие сообщения одного сеанса являются входящими для другого, и наоборот.
+
+Противник получает доступ к запросам $\mathtt{SessionStateReveal}$, $\mathtt{SessionKeyReveal}$, $\mathtt{Corrupt}$. 
+
+Запрос $\mathtt{SessionStateReveal}(\mathfrak{s})$ позволяет противнику получить состояние текущего сеанса $\mathfrak{s}$, в том числе любую секретную информацию. Запрос фиксируется, и сеанс 
+не выдает выходной информации.
+
+Запрос  $\mathtt{SessionKeyReveal}(\mathfrak{s})$ выдает противнику сеансовый ключ для заданного сеанса $\mathfrak{s}$
+
+Запрос $\mathtt{Corrupt}(P_i)$ передает противнику контроль над абонентом $P_i$, в том числе всю информацию в памяти абонента, включая сохраненные сеансовые ключи и другую информацию о сеансах. Захваченный абонент не производит более выходной информации.
+
+Назовем сеанс $\mathfrak{s}$  с владельцем $P_i$ \emph{локально раскрытым}, если противник выполнил один из запросов $\mathtt{SessionStateReveal}(\mathfrak{s})$, $\mathtt{SessionKeyReveal}(\mathfrak{s})$, $\mathtt{Corrupt}(P_i)$, до того, как сеанс завершился. Скажем, что сеанс \emph{раскрыт}, если раскрыт сеанс или соответствующий ему, иначе назовем сеанс \emph{свежим}.
+
+Далее, противнику $\mathcal{I}$ разрешается единственный запрос $\mathtt{Test}(\mathfrak{s})$, который может быть применен на любом этапе к завершенному свежему сеансу $\mathfrak{s}$.
+Выбирается случайный бит $b$. Если $b=0$, то оракул раскрывает сеансовый ключ, иначе, если $b=1$, оракул вырабатывает случайное значение из пространства сеансовых ключей. Затем противник может выполнять любые запросы, за исключением того, что он не может пытаться раскрыть тестовый сеанс $\mathfrak{s}$. В любой момент противник может попытаться угадать $b$. Обозначим
+$\mathrm{GoodGuess}^{\mathcal{I}}(k)$ событие, состоящее в том, что $\mathcal{I}$ угадал $b$, и определим \emph{преимущество}
+$$
+\mathrm{Adv}^{\mathcal{I}}(k)=\mathrm{max}\left\{0,\left|\mathrm{Pr}[\mathrm{GoodGuess}^{\mathcal{I}}(k)]-\frac{1}{2}\right|\right\},
+$$
+где $k$ -- параметр стойкости.
+
+\begin{definition}
+ Протокол выработки общего ключа $\Pi$ с параметром стойкости $k$ является стойким относительно задачи определения сеансового ключа в модели Канетти--Кравчика, если выполнено следующее:
+ \begin{enumerate} 
+  \item если два честных абонента завершили совпадающие сеансы, то соответствующие сеансовые ключи совпадают; 
+  \item $\mathrm{Adv}^{\mathcal{I}}(k)$ -- пренебрежимо малая величина.
+ \end{enumerate}
+
+\end{definition}
+
+\begin{theorem} В предположении о сложности задачи SSDDH, протокол из раздела \ref{protodesc} является стойким относительно задачи определения сеансового ключа в модели Канетти--Кравчика.
+ \end{theorem}
+\begin{proof}
+ Поскольку наш протокол является вариантом протокола из \cite{DF}, то доказательство в точности повторяет рассуждения из \cite[Theorem 6.1]{DF}.
+\end{proof}
+
+
+
+\subsection{Практический анализ}
+
+Дадим несколько упрощенную формулировку SSCI, достаточную для наших целей. Итак, пусть задана (секретная) $l^e$-изогения $\phi:E_0\to E/\tr{G}$. По кривой $E/\tr{G}$ и образам $\varphi (P), \varphi(Q)$
+найти порождающий элемент  подгруппы $ G$ или, что эквивалентно, изогению $\phi:E\to E/G$).
+ 
+ \subsection*{Тотальный перебор}
+  
+Поскольку в любой суперсингулярной кривой $E (GF(p^2))$ имеется $(l+1)l^{e-1}$ циклических подгрупп порядка $l^e$, то тотальный перебор требует $O(l^e) $ или $O(p^{1/2})$ опробований.
+ 
+ \subsection*{Метод ``встречи посередине''}
+
+ Пусть для простоты $e$ четное.
+ 
+Построим два дерева таких, что листья первого определяют классы изоморфизмов кривых, $l^{e/2}$-изогенных $E$;
+листья второго -- классы изоморфизмов кривых, $l^{e/2}$-изогенных $E/G$.
+
+В каждом наборе по $(l+1)l^{e/2-1}$ классов; с большой вероятностью единственный класс, заданный представителями $E'$ и $E''$ из первого и второго наборов соответственно, содержится в их пересечении. Найдя его, строим 
+$\phi$ как композицию изогении из $\phi_1:E\to E'$, изоморфизма $\psi:E'\to E''$ и двойственной к изогении из $E/G$: ${\phi}_2:E/\tr{G}\to E''$.
+
+Требуемый объем памяти --- $O(p^{1/4})$ ячеек, время --- $O(p^{1/4})$ операций.
+
+%В \cite{Adj} предложен метод построения 
+
+ \subsection*{Квантовый вычислитель}
+
+\emph{Claw-finding} алгоритм из \cite{quant} для заданных функций $g_1:X_1\to Y$, $g_2:X_2\to Y$ определяет такие $(x_1, x_2)\in X_1\times X_2$: $g_1(x_1)=g_2(x_2)$.
+
+Пусть при этом $\#X_1\approx \#X_2 \approx N$, $\#Y\gg N$, тогда время работы составляет $O(N^{2/3})$ операций при требованиях к памяти $O(N^{2/3})$.
+
+В нашем случае $X_1 $ -- множество $l^{e/2}$-изогений  из $E=E_1$; $X_2$ -- множество $l^{e/2}$-изогений  из $E/G=E_2$, $g_i(\phi)=j(\phi(E_i))$.
+Имеем $\#X_1=\#X_2\approx p^{1/4}$, отсюда  время -- $O(p^{1/6})$ (и память $O(p^{1/6})$).
+
+Метод Гровера, примененный к задаче CSSI в \cite{FFF}, требует $O(p^{1/4})$ операций,  необходимая память -- $O(1)$.
+
+
+ \subsection*{Метод ван Ооршота -- Винера}
+ 
+Общий метод поиска коллизий из \cite{vOW}, адаптированный к CSSI \cite{Adj,Costello}, эффективно распараллеливается на $m$ процессоров.
+
+Наиболее эффективные методы поиска коллизий псевдослучайной функции $f$ являются итерационными в том смысле, что они основаны на вычислении 
+последовательностей вида $x_i = f(x_{i-1})$, $i \in \NN$, откуда следует, что функция $f$ должна быть такой, что множество ее значений содержится в множестве, 
+на котором она определена.
+ 
+Идея метода состоит в том, что
+каждый процессор вырабатывает свою последовательность $x_i=f(x_{i-1})$ до появления \emph{выделенной точки} $x_d$, удовлетворяющей некоторому легко проверяемому условию (например, фиксированное число нулевых старших битов), $x_d$ записывается в общую для всех процессоров память по адресу, вычисляемому как некоторая взаимно однозначная функция точки, и начинает выработку новой последовательности.
+
+
+Если одна и та же выделенная точка встречается дважды -- найдена коллизия $f$. Каждый процессор вместе с последовательностью $x_i$ вычисляет значения $(x^{(i)},y^{(i)})$ и сохраняет их для каждой выделенной точки, совпадение выделенных точек $x^d$ и $x'_{d'}$, означает, что $((x^{(d)}, y^{(d)}), (x^{(d')}, y{(d')}))$ -- коллизия.
+
+Среднее время работы алгоритма приближенно равно
+$$
+\left(\sqrt{\frac{\pi\#S}{2p}}/m+\frac{\alpha}{\theta}\right)t,
+$$
+где
+\begin{itemize}
+\item $f$ -- случайное отображение,
+\item $p$ -- вероятность того, что случайно выбранная коллизия $f$ является \emph{полезной},
+\item $\theta$ -- доля выделенных точек в множестве $S$,
+\item $t$ -- время одной итерации.
+\end{itemize}
+
+Пусть $S=\{0,1\}\times\{0,\dots,(l+1)l^{e/2-1}-1\}$, $E_0=E$, $E_1=E/G$.  Каждая пара $(i,y)\in S$ задает подгруппу эллиптической кривой $E_i$. 
+\begin{example}
+ Для $l=2$ в \cite{Adj} соответствие задается между парами $(i,y)=(i,(b,k))\in\{0,1\}\times\{0,1,2\}\times \{0,\dots,l^{e/2-1}-1\}$ и 
+ циклическими подгруппами $\tr{R_i}\subset E_i$, где
+ \begin{equation*}
+R_i = 
+ \begin{cases}
+   P_i+[b2^{e/2-1}k,  &\text{если } b=0,1 \\
+   [2k]P_i+Q_i,  &\text{если } b=2,
+ \end{cases}
+\end{equation*}
+где $\tr{P_i,Q_i} = E_i[2^{2/2-1}]$.
+\end{example}
+
+Пусть $h:S\to E_0(GF(p^2))\cup E_1(GF(p^2))$, $h:(i,y)\mapsto R_i$, и  пусть итерационная функция $f:S\to S$ -- функция, которая по входной паре $(i,y)$
+вычисляет изогению степени $l^{e/2}$ с ядром $\tr{R_i}$, вычисляет $j$-инвариант $j(E_i/\tr{R_i})$ и отображает его в $S$ при помощи некоторой псевдослучайной
+функции $g: GF(p^2)\to S$.
+
+%Коллизия для $f$ -- это пара $x,x'$ такая, что 
+Существует единственная полезная коллизия для $f$, которая и решает задачу CSSI.
+
+Таким образом, итоговые оценки трудоемкости применительно к задаче CSSI:
+\begin{equation}
+T=\frac{2.5}{m}\sqrt{|S|^3/w}\cdot t;
+\end{equation}
+$m$ -- количество процессоров, $|S|$ -- мощность множества определения итерационной функции, $w$ -- объем памяти, $t$ -- трудоемкость итерационной функции.
+
+В нашем случае $|S|\approx p^{1/2}$, и таким образом оценка стойкости составляет
+\begin{equation} 
+O\left(\frac{p^{3/8}}{m\ w^{1/2}}\right)
+\end{equation}
+операций вычисления итерационной функции (в нашем случае -- вычисления $l$-изогении).
+
+\subsection*{Долговременные ключи}
+
+Отметим, что эффективная атака, предложенная в \cite{sec}, позволяет определить долговременный ключ абонента за $O(\log p)$ сеансов, поэтому использование долговременных ключей,
+равно как и повторное использование эфемерных ключей, протоколом не допускается.
+
+\subsection*{Выводы}
+
+Вывод: метод ван Ооршота--Винера --- наилучший.
+
+
+\section{Выбор параметров}
+
+Простое число  $p$ выбирается в виде $p_A=2^{e_2}3^{e_3}f-1$ так, что множители $2,3$ сбалансированы:  $e_2\approx e_3 \cdot \log_2 3$, а множитель $f$ -- малое простое число. При этом для $p$ требуется, чтобы
+$\big(\frac{-19}{p}\big) = -1$ (см. далее).
+
+В соответствии с оценками раздела \ref{analysis}, предлагаются следующие наборы параметров. %, обеспечивающих классический уровень стойкости, соответственно, 128 и 256 битов:
+
+\begin{center}
+ \begin{tabular}{|l|c|p{3cm}|p{3cm}|}
+ \hline
+ Число & & Классическая стойкость & Квантовая стойкость \\
+ \hline
+ $p_{xxx}$ & TODO!!!  &   & 80 \\
+ \hline
+ $p_{415}$ & $2^{208}\cdot 3^{129} \cdot 5 - 1$ & 128 & 103 \\
+ \hline 
+ $p_{754}$ & $2^{372} \cdot 3^{239} \cdot 7 - 1$ & 256 & 187\\
+ \hline
+ \end{tabular}
+
+\end{center}
+
+% 
+% $$
+%  p_{415}=2^{208}\cdot 3^{129} \cdot 5 - 1
+% $$
+% $$
+% p_{754}= 2^{372} \cdot 3^{239} \cdot 7 - 1
+% $$
+
+
+Стартовая кривая протокола может фиксироваться, например, как $E_0(GF(p^2)): y^2=x^3+x$. %; она суперсингулярна, поскольку $p_\lambda\equiv 3\pmod{4}$.%, см. \cite{Silverman}.
+Однако мы предлагаем использовать кривую   $E_{19}(GF(p))$:
+\begin{equation}
+E_{19}\!: y^2 = x^3 - 2^3 19 x + 2 \!\cdot\! 19^2
+\end{equation}
+с $j$-инвариантом $-2^{15} 3^3$. Ее выбор мотивирован в \cite{StartingCurve}. В частности,  $E_{19}$ не обладает эндоморфизмами степени 2 и 3, то есть петлями в
+графах 2- и 3-изогений.  Также у  нее отсутствуют кратные дуги в графах 2- и 3-изогений, в отличие от   кривых, использованных в SIKE \cite{SIKE}.
+ 
+По теореме Дойринга (см., например, \cite[Теорема 2.1]{Broker}) для суперсингулярности кривой $E_{19}$ необходимо и достаточно, чтобы $\big(\frac{-19}{p}\big) = -1$. %В свою очередь, благодаря квадратичному закону взаимности это эквивалентно тому, что $\big(\frac{p}{19}\big) = -1$.
+Указанное условие выполняется для $p_{415}, p_{754}$.
+
+Эллиптические кривые могут быть заданы, например, в форме Монтгомери ($By^2=x^3+Ax^2+x$) или Эдвардса ($ax^2+y^2=1+dx^2y^2$).
+
+Для построения базиса $\{P_A,Q_A\}$ будем действовать следующим образом.
+Будем перебирать случайные точки   $P\in_R E_0$ и вычислять $P'=[(l_B ^{e_B}\cdot f)^2]P$; с большой вероятностью это точка порядка $((l_A)^{e_A})^2$ (проверяем, умножая на степени $l_A$), и тогда
+ $P_A=P'$.
+ Аналогично вычислим $Q_A$ порядка $((l_B)^{e_B})^2$. 
+ 
+ Проверка независимости: \emph{спаривание Вейля} $e(P_A,Q_A)$ в $E[l_A^{e_A}]$ должно иметь порядок $l_A^{e_A}$ (с большой вероятностью это так).
+ 
+Аналогично выберем базис $\{P_B,Q_B\}$.
+
+\begin{remark}
+ Предполагается заменить данную процедуру на детерминированную, аналогично тому, как сделано в SIKE.
+\end{remark}
+
+
+
+%% FIXME!
+
+
+\section{Реализация}
+
+TODO!!!
+
+\section*{Заключение}
+
+Основные результаты работы подгруппы на данном этапе:
+
+\begin{itemize}
+ \item  предложен постквантовый протокол выработки общего ключа двумя абонентами на основе протокола SIDH;
+
+ \item  выбраны параметры протокола, в том числе, стартовая кривая, характеристики поля и т.д.
+
+ \item  разработан прототип программной реализации на языке Python с использованием библиотеки SAGE.
+\end{itemize}
+
+
+Основные задачи для дальнейшей работы:
+\begin{itemize}
+
+ \item  исследование криптографической стойкости протокола;
+
+ \item  разработка оптимизированной программной реализации протокола.
+\end{itemize}
+
+\newpage
+
+  \renewcommand{\baselinestretch}{.9}\large
+\newcommand{\noopsort}[1]{} \newcommand{\printfirst}[2]{#1}
+  \newcommand{\singleletter}[1]{#1} \newcommand{\switchargs}[2]{#2#1}
+\begin{thebibliography}{1}\addcontentsline{}{section}{Список литературы}
+
+
+%\bibitem{Gost2012}
+%ГОСТ Р 34.10-2012. Информационная технология.
+%  Криптографическая защита информации.
+%  Процессы формирования и проверки
+%  электронной цифровой подписи.%
+	%\newblock  --- Стандартинформ, Москва.
+%\newblock --- 2013.
+
+%\bibitem{GostHash2012}
+%ГОСТ Р 34.11-2012. Информационная технология.
+%  Криптографическая защита информации.
+%  Функция хэширования.%
+%\newblock  --- Стандартинформ, Москва.
+%\newblock --- 2013.
+
+%\bibitem{GostCrypto}
+%ГОСТ Р 34.12-2015. Системы обработки информации.
+%  Защита криптографическая. Блочные шифры.
+%\newblock  --- Стандартинформ, Москва.
+%\newblock --- 2015.
+
+%\bibitem{GostCryptoRez} ГОСТ Р 34.13-2015.
+%  Информационная технология.
+%  Криптографическая защита информации.
+%  Режимы работы блочных шифров.
+%\newblock  --- Стандартинформ, Москва.
+%\newblock --- 2015.
+
+%\bibitem{NIST} Submission Requirements and Evaluation Criteria for the Post-Quantum Cryptography Standardization Process. --- NIST. --- 2017.
+
+
+
+
+%\bibitem{Bok}R. Broker. Constructing supersingular elliptic curves. --- J. Comb. Number Theory, 1(3):269-273. --- 2009.
+
+
+
+\bibitem{Adj} Adj~G., Cervantes-Vázquez~D., Chi-Domínguez~J-J.,  Menezes~A., Rodríguez-Henríquez~F.. On the cost of computing isogenies between supersingular elliptic curves.  \url{http://eprint.iacr.org/2018/313}. --- 2018.
+
+
+\bibitem{Broker} Bröker~R. {\it Constructing supersingular elliptic curves}. // Journal of Combinatorics and Number Theory, 2009. Vol. 1(3). P. 269--273.
+
+\bibitem{CK}
+Canetti~R., Krawczyk~H.
+\newblock
+\newblock Analysis of key-exchange protocols and their use for building secure
+ channels// EUROCRYPT 2001, LNCS 2045.
+\newblock --- N. Y.: Springer-Verlag.
+\newblock --- 2001.
+\newblock ---  P.~453--474.
+
+\bibitem{Costello} Costello~C., Longa~P., Naehrig~M., Renes~J., Virdia~F. Improved Classical Cryptanalysis of SIKE in Practice. \url{http://eprint.iacr.org/2019/298} (2019).
+
+%Costello C. et al. Improved Classical Cryptanalysis of SIKE in Practice //IACR International Conference on Public-Key Cryptography. – Springer, 2020. – P. 505-534.
+
+%\bibitem{Imp2}
+% Costello C., Longa P., Naehrig M. Efficient algorithms for supersingular isogeny Diffie-Hellman. --- 
+% Cryptology ePrint Archive: Report 2016/413. 
+% \newblock \url{https://eprint.iacr.org/2016/413}. --- 2016.
+\bibitem{Costello2} Costello~C. Supersingular isogeny key exchange for beginners. \url{http://eprint.iacr.org/2019/1321}. --- 2019.
+
+ 
+ 
+  \bibitem{DF} De Feo~L., Jao~D., Plût~J.   Towards quantum-resistant cryptosystems from supersingular elliptic curve isogenies.  // Journal of Math. Cryptology, 2014. Vol. 8(3). P. 209--247. 
+
+% \bibitem{Denchik}
+% \newblock Denisenko~D., Marshalko~G., Nikitenkova~M., Rudskoy~V., Shishkin~V.
+% \newblock Estimation of Grover's algorithm implementation for searching GOST R 34.10-2015 block cipher keys
+% \newblock --- Journal of Experimental and Theoretical Physics. --- 2019. --- Vol. 128, no. 4. --- P. 552–559.
+%  
+
+
+% \bibitem{Imp5} ``defeo/ss-isogeny-software''. GitHub. \url{https://github.com/defeo/ss-isogeny-software}. --- 2015.
+
+ %\bibitem{Gal1}
+%Delfs C., Galbraith S. D. Computing isogenies between supersingular elliptic curves over $\mathbb{F}_p$ //Designs, Codes and Cryptography. – 2016. – Т. 78. – №. 2. – С. 425-440. 
+
+% \bibitem{Edwards2007}
+%Edwards H. M. \newblock A normal form for elliptic curves.
+% --- Bulletin of the AMS, 44: 393–422. --- 2007.
+  
+%\bibitem{Imp1}
+% Fishbein  D. 
+% \newblock Machine-Level Software Optimization of Cryptographic Protocols. University of Waterloo Library - Electronic Theses.
+% University of Waterloo. --- 2014.
+
+% \bibitem{Gal2}
+% Galbraith S., Petit C.,  Silva J.
+% \newblock Schemes Based On Supersingular Isogeny Problems, Cryptology ePrint Archive: Report 2016/1154. 
+% \newblock \url{https://eprint.iacr.org/2016/1154}. --- 2016.
+
+\bibitem{sec}
+Galbraith~S., Petit~C.,  Shani~B, Yan Bo Ti.
+\newblock
+On the Security of Supersingular Isogeny Cryptosystems. --- 
+Cryptology ePrint Archive: Report 2016/859. --- \newblock \url{https://eprint.iacr.org/2016/859}. --- 2016.
+
+  
+%  \bibitem{Gal18}
+% Galbraith S.
+%\newblock Authenticated key exchange for SIDH. ---
+% Cryptology ePrint Archive: Report 2018/266
+%\newblock \url{http://eprint.iacr.org/2018/266}.
+%--- 2018.
+
+\bibitem{SIKE}  Jao~D. et al. \newblock Supersingular Isogeny Key Encapsulation\newblock \url{https://sike.org} --- 2017.
+
+
+\bibitem{FFF}
+Jaques~S.,  Schanck~J.M.
+\newblock Quantum cryptanalysis in the RAM model: Claw-finding attacks on SIKE.//
+ Cryptology ePrint Archive: Report 2019/103. ---  \newblock \url{https://eprint.iacr.org/2019/103}. --- 2019.
+
+ 
+% \bibitem{JKL} 
+% Ik Rae Jeong, Katz J., Dong Hoon Lee. \newblock One-round protocol for two-party key exchange. // In ACNS 2004, volume 3089 of LNCS.
+% \newblock 2004.
+% \newblock P.~220-232.
+ 
+%\bibitem{Static}
+%Kirkwood D., Lackey B.C., McVey J., Motley M., Solinas J.A., Tuller D.
+%\newblock Failure is not an option: Standardization issues for post-quantum key agreement//
+%Workshop on Cybersecurity in a Post-Quantum World. --- 2015.
+
+ %\bibitem{Imp3} Koziel B., Jalali A., Azarderakhsh R., Kermani M., Jao D.  \newblock EON-SIDH: Efficient Implementation of Supersingular Isogeny Diffie-Hellman Key Exchange Protocol on ARM. --- 
+ %Cryptology ePrint Archive: Report 2016/413. --- 
+ %\url{https://eprint.iacr.org/2016/413} --- 2016
+ 
+ %\bibitem{Imp4} Koziel B., Jalali A., Azarderakhsh R., Kermani M. \newblock Fast Hardware Architectures for Supersingular Isogeny Diffie-Hellman Key Exchange on FPGA. --- 
+ %Cryptology ePrint Archive: Report 2016/1044. --- 
+ %\url{http://eprint.iacr.org/2016/1044} --- 2016.
+
+
+%\bibitem{RoSt}  Rostovtsev A., Stolbunov A.: Public-key cryptosystem based on isogenies. --- Cryptology ePrint Archive, Report 2006/145. --- \url{http://eprint.iacr.org/2006/145}. --- 2006.
+
+\bibitem{vOW} van Oorschot~P., Wiener~M. Parallel Collision Search with Cryptanalytic Applications. J. Cryptology 12, 1–28 (1999).
+
+
+
+\bibitem{Silverman}
+Silverman~J.H.
+\newblock The Arithmetic of Elliptic Curves. 
+--- Springer:2009.
+
+
+%  \bibitem{DSIG1} Sun Xi, Tian Wang. \newblock
+%  Toward Quantum-Resistant Strong Designated Verifier Signature from Isogenies. Intelligent Networking and Collaborative Systems (INCoS), 2012 4th International Conference on. IEEE: 292–296. 
+
+\bibitem{quant}
+  Seiichiro Tani. 
+  \newblock Claw Finding Algorithms Using Quantum Walk. \url{http://arxiv.org/abs/0708.2584}. --- 2008.
+  
+  
+\bibitem{Velu}   Vel\'{u}~J. \newblock Isogenies entre courbes elliptiques, C.R. Acad. Sc. Paris, Serie A., 273, pp. 238–241 (1971).
+
+\bibitem{Wash}
+Washington~L.C.
+\newblock Elliptic curves, number theory and cryptography: CRC.
+\newblock --- 2008.
+
+% \bibitem{DSIG2} Youngho Yoo, Azarderakhsh R.,  Jalali A., Jao D., Soukharev V. A Post-Quantum Digital Signature Scheme
+%Based on Supersingular Isogenies. 
+% Cryptology ePrint Archive: Report 2017/186. --- 
+%\url{https://eprint.iacr.org/2017/186}. --- 2017.
+
+\bibitem{StartingCurve} Кошелев~Д. {\it Стартовая суперсингулярная эллиптическая кривая для криптографии на изогениях}, \url{https://www.researchgate.net/profile/Dimitri_Koshelev}, 2020.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{thebibliography}
+
+\newpage 
+
+\appendix
+\section{Контрольные примеры}
+
+TODO!!!
+
+\end{document}
+
