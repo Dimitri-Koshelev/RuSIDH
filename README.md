@@ -1,1 +1,1 @@
-# RussSIDH
+# RuSIDH
