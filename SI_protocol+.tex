@@ -51,7 +51,7 @@
 \newcommand{\srf}{\sr(f)} %
 \newcommand{\lfsrf}{\lfsr(\chi,f)} %
 \newcommand{\gotu}{\mathfrak{U}} %
-\newcommand{\gotb}{\mathfrak{B}} %
+\newcommand{\gotb}{\mathfrak{b}} %
 \newcommand{\trnsp}[1]{{#1}^{\text{Т}}}
 \newcommand{\const}{\rm const}
 \newcommand{\br}[1]{\left(#1\right)}
@@ -92,7 +92,7 @@
 \renewcommand{\proofname}{Доказательство}
 \newtheorem{hypo}{Гипотеза}
 \newtheorem{problem}{Задача}
-\renewcommand{\abstractname}{Abstract}
+\renewcommand{\abstractname}{ABstract}
 
 \setromanfont{Times New Roman}
 \setsansfont{Arial}
@@ -201,7 +201,7 @@ $$
 \end{theorem}
 
 Согласно \cite[2.9]{Wash}, рациональное отображение $\psi(x,y)$, $\psi:E_{a,b}\to E_{a_1,b_1}$ 
-может быть записано в канонической форме $\psi(x,y)=(r_1(x),yr_2(x))$, где $r_1,r_2$ -- рациональные функции.
+может быть записано в канонической форме $\psi(x,y)=(r_1(x),yr_2(x))$, где $r_1,r_2$ -- рациональные функции. Под \emph{степенью} изогении будем понимать степень $r_1$ как рациональной функции. Изогении степени $l$ будем также называть $l$-изогениями. 
 
 \begin{definition}
 Изогения называется \emph{сепарабельной}, если $r_1'(x)\neq 0$.
@@ -239,8 +239,8 @@ $$
 
 \begin{theorem}\label{thx}
  \begin{enumerate}
-  \item Если $(m,p)=1$, то  $E_{a,b}[m]$ изоморфна $\ZZ/m\ZZ\times \ZZ/m\ZZ$
-  \item группа $E_{a,b}[p^e] $ либо равна $\{\mathcal{O}\}$ для всех $e=1,2,\dots$, %(тогда кривая суперсингулярна), 
+  \item Если $(m,p)=1$, то  $E_{a,b}[m]$ изоморфна $\ZZ/m\ZZ\times \ZZ/m\ZZ$.
+  \item Группа $E_{a,b}[p^e] $ либо равна $\{\mathcal{O}\}$ для всех $e=1,2,\dots$, %(тогда кривая суперсингулярна), 
   либо для всех $e$  изоморфна $\ZZ/p^e\ZZ$.  
  \end{enumerate}
 \end{theorem}
@@ -259,7 +259,7 @@ $$
 
 %\begin{example}Рассмотрим случаи
 
- %$p\equiv2\bmod 3,\,y^2=x^3+a$; $p=3\bmod4,\,y^2=x^3+x$. %Для этих кривых существует более быстрый вариант алгоритма Миллера \cite{BKLS02}.
+ %$p\equiv2\bmod 3,\,y^2=x^3+a$; $p=3\bmod4,\,y^2=x^3+x$. %Для этих кривых существует более быстрый вариант алгоритма Миллера \cite{bKLS02}.
 %\end{example}
 
 %% XXX графы изогений
@@ -272,7 +272,7 @@ $$
 
 Для построения изогений заданной степени можно воспользоваться формулами Велю \cite{Velu}. 
 
-Итак, пусть имеется эллиптическая кривая, заданная в форме Вейерштрасса ($y^2=x^3+ax+b$) над полем $K$ характеристики, отличной от 2 и 3. Пусть $F$ -- подгруппа $E(K)$ порядка $l$. Тогда изогения с ядром $F$ строится по следующему алгоритму.
+Итак, пусть имеется эллиптическая кривая $E_{a,b}(K)$, заданная в форме Вейерштрасса ($y^2=x^3+ax+b$) над полем $K$ характеристики, отличной от 2 и 3. Пусть $F$ -- подгруппа $E_{a,b}(K)$ порядка $l$. Тогда изогения с ядром $F$ строится по следующему алгоритму.
 
 \begin{enumerate}
  \item Разобьем $F\setminus\{\mathcal{O}\}$ на три непересекающихся множества, $F=F_2\cup R_+\cup R_-$, где $F_2$ -- множество точек четного порядка,
@@ -321,21 +321,22 @@ $$\varphi_i:E_i\to E_{i+1}=E_i/\tr{l^{e-i-1}G_i}, G_{i+1}=\varphi_i(G_i). $$
 Учитывая сказанное, приведем формулы Велю для случаев $l=2,3$.
 
  \subsubsection*{Случай $l=2$}
-  $P=(X_P,y_P)$ -- точка порядка 2 на $E_{a,b}(GF(p^2))$. Положим $v=3X_P^2+a$, $a'=a-5v$, $b'=b-7vX_P$;
- $E'(GF(p^2)): Y^2=X^3+a'X+b'$ -- 2-изогенная $E_{a,b}$ кривая, и
+Пусть  $P=(X_P,y_P)$ -- точка порядка 2 на $E_{a,b}(GF(p^2))$. Положим $v=3X_P^2+a$, $a'=a-5v$, $b'=b-7vX_P$;
+тогда $E_{a',b'}(GF(p^2)): Y^2=X^3+a'X+b'$ -- 2-изогенная $E_{a,b}$ кривая, и  отображение
  $$
  (x,y)\mapsto \left(\frac{v}{x-X_P}+X_P, Y-\frac{vY}{(X-X_P)^2}\right) 
  $$
- задает 2-изогению из $E_{a,b}$ в $E'$ с ядром $\tr{P}$. 
+ задает 2-изогению из $E_{a,b}$ в $E_{a',b'}$ с ядром $\tr{P}$. 
 
    
  \subsubsection*{Случай $l=3$}
-  $P=(X_P,y_P)$ -- точка порядка 3 на $E_{a,b}(GF(p^2))$. Положим $v=3X_P^2+a$, $u=4Y_P^3$, $a'=a-5v$, $b'=b-7(u+vX_P)$;
- $E'(GF(p^2)): Y^2=X^3+a'X+b'$ -- 3-изогенная $E_{a,b}$ кривая, и
+ Пусть $P=(X_P,y_P)$ -- точка порядка 3 на $E_{a,b}(GF(p^2))$. Положим $v=3X_P^2+a$, $u=4Y_P^3$, $a'=a-5v$, $b'=b-7(u+vX_P)$;
+ тогда $E_{a',b'}(GF(p^2)): Y^2=X^3+a'X+b'$ -- 3-изогенная $E_{a,b}$ кривая, и
+ отображение
  $$
  (x,y)\mapsto \left(\frac{v}{x-X_P}+\frac{u}{(X-X_P)^2}+X_P, Y\left(1-\frac{v}{(X-X_P)^2}+\frac{2u}{(X-X_P)^3}\right)\right) 
  $$
- задает 3-изогению из $E_{a,b}$ в $E'$ с ядром $\tr{P}$. 
+ задает 3-изогению из $E_{a,b}$ в $E_{a',b'}$ с ядром $\tr{P}$. 
 
   
   
@@ -358,7 +359,7 @@ $$\varphi_i:E_i\to E_{i+1}=E_i/\tr{l^{e-i-1}G_i}, G_{i+1}=\varphi_i(G_i). $$
 M_{A,B}(GF(p)): By^2=x^3+Ax^2+x, \text{ где } A,B\in GF(p), B(A^2-4)\neq 0.
 \end{equation}
 
-Положим $a=1/B^2-A^2/(3B^2)$, $b=-A^3/(27B^3)-aA/(3B)$ -- получим преобразование к форме Вейерштрасса $E_{a,b}$.
+Положим $a=1/b^2-A^2/(3b^2)$, $B=-A^3/(27b^3)-aA/(3b)$ -- получим преобразование к форме Вейерштрасса $E_{a,b}$.
 
 \begin{theorem} Эллиптическая кривая, заданная в краткой форме Вейерштрасса $E_{a,b}$,
  может быть преобразована в форму Монтгомери тогда и только тогда, когда многочлен $x^3+ax+b$ 
@@ -368,39 +369,56 @@ M_{A,B}(GF(p)): By^2=x^3+Ax^2+x, \text{ где } A,B\in GF(p), B(A^2-4)\neq 0.
 Если условия этой теоремы выполнены, то положим $A=3\alpha s$, $B=s$, где $s$ -- квадратный корень из $(3\alpha^2+a)^{-1}$, 
 и определим замену координат по формуле $(x,y)\mapsto (x/s+\alpha,y/s)$.
 
-На таких кривых точка $(0,0)$ имеет порядок 2, и $\#M_{A,B}$ делится на 4.
+На таких кривых точка $(0,0)$ имеет порядок 2, и $\#M_{A,B}$ делится на 4. $j$-инвариант кривой Монтгомери вычисляется по формуле
+$$
+j(M_{A,B})=\frac{256(A^2-3)^3}{A^2-4}.
+$$
 
 Операции на кривых Монтгомери задаются следующими формулами:
+\small
 \begin{multline*}
-(x_1,y_1)+(x_2,y_2)=(B(y_2-y_1)^2/(x_2-x_1)^2-a-x_1-x_2, \\(2x_1+x_2+A)(y_2-y_1)/(x_2-x_1)-B*(y_2-y_1)^3/(x_2-x_1)^3-y_1)\end{multline*}
-\begin{multline*}
-2(x_1,y_1)=(B*(3x_1^2+2Ax_1+1)2/(2By_1)2-A-x_1-x_1 ,  \\(2x_1+x_1+A)*(3x_1^2+2Ax_1+1)/(2By_1)-B*(3x_1^2+2Ax_1+1)^3/(2By_1)^3-y_1)
+(x_1,y_1)+(x_2,y_2)=\left(B\frac{(y_2-y_1)^2}{(x_2-x_1)^2}-A-x_1-x_2, \frac{(2x_1+x_2+A)(y_2-y_1)}{(x_2-x_1)}-B\frac{(y_2-y_1)^3}{(x_2-x_1)^3-y_1)}\right)
 \end{multline*}
+при $(x_1,y_1)\neq(x_2,-y_2)$;
+\begin{multline*}
+[2](x_1,y_1)= \left(\frac{(x_1^2-1)^2}{4x_1(x_1^2+Ax_1+1)} , y_1\frac{(x_1^2-1)(x_1^4+2Ax_1^3+6x_1^2+2Ax_1+1)}{8x_1^2(x_1^2+Ax_1+1)^2}\right);
+\end{multline*}
+\begin{multline*}
+[3](x_1,y_1)= \left(\frac{(x_1^4-4Ax_1-6x_1^2-3)^2x_1}{(4Ax_1^3+3x_1^4+6x_1^2-1)^2}\right., \\
+\left.y_1\frac{(x_1^4-4Ax_1-6x_1^2-3)(x_1^8+4Ax_1^7+28x_1^6+28x_1^5+(16A^2+6)x_1^4+28Ax_1^3+28x_1^2+4AX_1+1))}{(4Ax_1^3+3x_1^4+6x_1^2-1)^3}\right)
+\end{multline*}
+\large
 
 
 Точка $(x,y)$ на кривой Монтгомери (\ref{monty}) представляется в \emph{проективных координатах} в виде пары $(X:Z)$ такой, что $x=X/Z$.
 Подобное представление позволяет использовать эффективные алгоритмы сложения и удвоения, вычисляющие только $x$-координату точки, 
-что в ряде случаев (но не в случае схемы цифровой подписи!) является достаточным.
+что в ряде случаев %(но не в случае схемы цифровой подписи!) 
+является достаточным.
 
-Пусть $m>n>0$, $P=(X_1:Y_1:Z_1)\in M_{A,B}$, известны кратные точки $P_{n}=nP$, $P_{m}=mP$, $P_{m-n}=(m-n)P$. Тогда имеют место формулы
+Пусть $m>n>0$, $P=(X_1:Y_1:Z_1)\in M_{A,b}$, известны кратные точки $P_{n}=nP$, $P_{m}=mP$, $P_{m-n}=(m-n)P$. Тогда имеют место формулы
 \begin{eqnarray*}
 X_{m+n}=Z_{m-n}((X_m-Z_m)(X_n+Z_n)+(X_m+Z_m)(X_n-Z_n))^2\\
 Z_{m+n}=X_{m-n}((X_m-Z_m)(X_n+Z_n)+(X_m+Z_m)(X_n-Z_n))^2
 \end{eqnarray*}
 \begin{eqnarray*}
-4_{X_nZ_n}=(X-n+Z_n)^2-(X_n-Z_n)^2\\
-X_{2n}=X-n+Z_n)^2(X_n-Z_n)^2\\
+4X_nZ_n=(X_n+Z_n)^2-(X_n-Z_n)^2\\
+X_{2n}=(X_n+Z_n)^2(X_n-Z_n)^2\\
 Z_{2n}=4X_nZ_n((X_n-Z_n)^2+((A+2)/4)(4X_nZ_n))
 \end{eqnarray*}
 
+\subsection{Вычисление изогений на кривых Монтгомери}
+
+TODO!!!
 
 \subsection{Арифметика в $GF(p^2)$}
 
 TODO!!!
 
+$GF(p^2) = GF(p)(\imath)$, где $\imath^2+1=0$.
+
 \section{Протокол выработки общего ключа}\label{protodesc}
 
-В протоколе принимают участие два абонента: \emph{инициатор} $A$ и \emph{ответчик} $B$.
+В протоколе принимают участие два абонента: \emph{инициатор} $A$ и \emph{ответчик} $b$.
 
 \subsection*{Параметры протокола}
 
@@ -420,23 +438,31 @@ $(l_A,f)=(l_B,f)=1$;
  E/\tr{Q} @>>> E/\tr{P,Q}
 \end{CD}
 \end{equation}
-где $\varphi, \psi$ -- случайные пути в графах изогений степеней $l_A$, $l_B$ соответственно. Стойкость протокола основана на 
-сложности нахождения пути, соединяющего две вершины в графе.
+где $\varphi, \psi$ -- случайные пути в графах изогений степеней $l_A$, $l_B$ соответственно. Протокол представляет собой вариант схемы Диффи-Хеллмана, реализованный над диаграммой (\ref{comd}). Идея его состоит в том, чтобы абонент $A$ выбирал $\varphi$, а $b$ выбрал $\psi$. Стойкость протокола основана на 
+сложности нахождения пути, соединяющего две вершины в графе. 
 
 \subsection*{Протокол выработки общего ключа}
 
-Этот протокол представляет собой вариант схемы Диффи-Хеллмана, реализованный над диаграммой (\ref{comd}). Идея его состоит в том, чтобы абонент $A$ выбирал $\varphi$, а $B$ выбрал $\psi$.
+%Этот протокол представляет собой вариант схемы Диффи-Хеллмана, реализованный над диаграммой (\ref{comd}). Идея его состоит в том, чтобы абонент $A$ выбирал $\varphi$, а $b$ выбрал $\psi$.
+
+%%FIXME!!!
 
 Фиксируем открытые параметры протокола:
-базисы $\{P_A,Q_A\}$ и $\{P_B,Q_B\}$, которые порождают, соответственно, $E_0[l_A^{e_A}]$ и $E_0[l_B^{e_B}]$, т.е. $\tr{P_A,Q_A}=E_0[l_A^{e_A}]$ и $\tr{P_B,Q_B}=E_0[l_B^{e_B}]$.
+\begin{itemize}
+ \item простое число $  p=l_A^{e_A}l_B^{e_B}\cdot f  \pm 1$, где $l_A,l_B$ -- маленькие простые (например, 2 и 3),
+$(l_A,f)=(l_B,f)=1$;
+ \item суперсингулярную кривую $E_0(GF(p^2))$
+ \item базисы $\{P_A,Q_A\}$ и $\{P_B,Q_B\}$, которые порождают, соответственно, $E_0[l_A^{e_A}]$ и $E_0[l_B^{e_B}]$, т.е. $\tr{P_A,Q_A}=E_0[l_A^{e_A}]$ и $\tr{P_B,Q_B}=E_0[l_B^{e_B}]$.
+
+\end{itemize}
 
  Абонент $A$ выбирает  случайный элемент $ n_A\in_R\ZZ/l_A^{e_A}\ZZ$ %,% который одновременно не делится на $l_A$, 
- и строит изогению $\varphi_A:E_0\to E_A$ с ядром $K_A:=\tr{ P_A+[n_A]Q_A}$.  Абонент $A$  также вычисляет образ $\{\varphi_A(P_B),\varphi_A(Q_B)\}$ и посылает эти точки абоненту $B$ вместе с эллиптической кривой $E_A$ (т.е. ее описанием).
+ и строит изогению $\varphi_A:E_0\to E_A$ с ядром $K_A:=\tr{ P_A+[n_A]Q_A}$.  Абонент $A$  также вычисляет образ $\{\varphi_A(P_B),\varphi_A(Q_B)\}$ и посылает эти точки абоненту $b$ вместе с эллиптической кривой $E_A$ (т.е. ее описанием).
  
- Аналогично, абонент $B$ выбирает   случайный элемент  $ n_B\in_R\ZZ/l_B^{e_B}\ZZ$ %, %который одновременно не делится на $l_B$, 
- и строит изогению $\varphi_B:E_0\to E_B$ с ядром $K_B:=\tr{ P_B+[n_B]Q_B}$.  Абонент $B$  также вычисляет образ $\{\varphi_B(P_A),\varphi_B(Q_A)\}$ и посылает эти точки абоненту $A$.
+ Аналогично, абонент $b$ выбирает   случайный элемент  $ n_B\in_R\ZZ/l_B^{e_B}\ZZ$ %, %который одновременно не делится на $l_B$, 
+ и строит изогению $\varphi_B:E_0\to E_B$ с ядром $K_B:=\tr{ P_B+[n_B]Q_B}$.  Абонент $b$  также вычисляет образ $\{\varphi_B(P_A),\varphi_B(Q_A)\}$ и посылает эти точки абоненту $A$.
  
- Получив от абонента $B$ набор $E_B, \varphi_B(P_A),\varphi_B(Q_A)$, абонент $A$ строит изогению $\varphi'_A:E_B\to E_{AB}$ с ядром $\tr{ \varphi_B(P_A)+[n_A]\varphi_B(Q_A)}$; абонент $B$ выполняет аналогичные действия.
+ Получив от абонента $b$ набор $E_B, \varphi_B(P_A),\varphi_B(Q_A)$, абонент $A$ строит изогению $\varphi'_A:E_B\to E_{AB}$ с ядром $\tr{ \varphi_B(P_A)+[n_A]\varphi_B(Q_A)}$; абонент $b$ выполняет аналогичные действия.
  В качестве общего ключа  используется $j$-инвариант кривой
  $$
  E_{AB}=\varphi'_B(\varphi_A(E_0))=\varphi'_A(\varphi_B(E_0))=E_0/\tr{ P_A+[n_A]Q_A,  P_B+[n_B]Q_B }.
@@ -447,7 +473,7 @@ $(l_A,f)=(l_B,f)=1$;
 В рамках этого раздела считаем, что $p=l_A^{e_A}\cdot l_B^{e_B}\cdot f-1$ -- сбалансированное простое (т.е. $l_A^{e_A}\approx l_B^{e_B}\approx p^{1/2}$), $E_0(GF(p^2))$ -- суперсингулярная эллиптическая кривая, базисы $\{P_A,Q_A\}$ и $\{P_B,Q_B\}$
 порождают, соответственно, $E_0[l_A^{e_A}]$ и $E_0[l_B^{e_B}]$, т.е. $\tr{P_A,Q_A}=E_0[l_A^{e_A}]$ и $\tr{P_B,Q_B}=E_0[l_B^{e_B}]$. 
 
-Иногда, для краткости, мы будем опускать индексы $A, B$ и использовать обозначения $l^e$.
+Иногда, для краткости, мы будем опускать индексы $A, b$ и использовать обозначения $l^e$.
 
 \subsection{Формальный анализ}
 
@@ -469,11 +495,11 @@ $R_1 + [n]S_1$, где   $n $ выбрано случайно равноверо
 
  \begin{problem}\label{problem8} \emph{Распознавательная задача суперсингулярных изогений, Supersingular Decisonal Diffie--Hellman -- SSDDH}: пусть задан набор , выбранный с вероятностью $1/2$ из одного из следующих распределений
 \begin{itemize}
-\item $(E_A,E_B,\varphi_A(P_B), \varphi_A(Q_B), \varphi_B(P_A), \varphi_B(Q_A),E_{AB})$, где\\ $(E_A,E_B,\varphi_A(P_B), \varphi_A(Q_B), \varphi_B(P_A), \varphi_B(Q_A))$ -- как в предыдущем определении,
+\item $(E_A,E_B,\phi_A(P_B), \phi_A(Q_B), \phi_B(P_A), \phi_B(Q_A),E_{AB})$, где\\ $(E_A,E_B,\phi_A(P_B), \phi_A(Q_B), \phi_B(P_A), \phi_B(Q_A))$ -- как в предыдущем определении,
 $$
 E_{AB} \cong E_0/\tr{P_A+[n]Q_A, P_B+[n]Q_B};
 $$
-\item $(E_A,E_B,\varphi_A(P_B), \varphi_A(Q_B), \varphi_B(P_A), \varphi_B(Q_A),E_{C})$, где\\  $(E_A,E_B,\varphi_A(P_B), \varphi_A(Q_B), \varphi_B(P_A), \varphi_B(Q_A))$ --  как в предыдущем определении,  
+\item $(E_A,E_B,\phi_A(P_B), \phi_A(Q_B), \phi_B(P_A), \phi_B(Q_A),E_{C})$, где\\  $(E_A,E_B,\phi_A(P_B), \phi_A(Q_B), \phi_B(P_A), \phi_B(Q_A))$ --  как в предыдущем определении,  
 $$
 E_C \cong E_0/\tr{P_A+[n']Q_A, P_B+[n']Q_B}
 $$
@@ -671,7 +697,7 @@ E_{19}\!: y^2 = x^3 - 2^3 19 x + 2 \!\cdot\! 19^2
 с $j$-инвариантом $-2^{15} 3^3$. Ее выбор мотивирован в \cite{StartingCurve}. В частности,  $E_{19}$ не обладает эндоморфизмами степени 2 и 3, то есть петлями в
 графах 2- и 3-изогений.  Также у  нее отсутствуют кратные дуги в графах 2- и 3-изогений, в отличие от   кривых, использованных в SIKE \cite{SIKE}.
  
-По теореме Дойринга (см., например, \cite[Теорема 2.1]{Broker}) для суперсингулярности кривой $E_{19}$ необходимо и достаточно, чтобы $\big(\frac{-19}{p}\big) = -1$. %В свою очередь, благодаря квадратичному закону взаимности это эквивалентно тому, что $\big(\frac{p}{19}\big) = -1$.
+По теореме Дойринга (см., например, \cite[Теорема 2.1]{broker}) для суперсингулярности кривой $E_{19}$ необходимо и достаточно, чтобы $\big(\frac{-19}{p}\big) = -1$. %В свою очередь, благодаря квадратичному закону взаимности это эквивалентно тому, что $\big(\frac{p}{19}\big) = -1$.
 Указанное условие выполняется для $p_{415}, p_{754}$.
 
 Эллиптические кривые задаются   в форме Монтгомери (\ref{monty}).
@@ -760,14 +786,14 @@ TODO!!!
 
 
 
-%\bibitem{Bok}R. Broker. Constructing supersingular elliptic curves. --- J. Comb. Number Theory, 1(3):269-273. --- 2009.
+%\bibitem{bok}R. broker. Constructing supersingular elliptic curves. --- J. Comb. Number Theory, 1(3):269-273. --- 2009.
 
 
 
 \bibitem{Adj} Adj~G., Cervantes-Vázquez~D., Chi-Domínguez~J-J.,  Menezes~A., Rodríguez-Henríquez~F.. On the cost of computing isogenies between supersingular elliptic curves.  \url{http://eprint.iacr.org/2018/313}. --- 2018.
 
 
-\bibitem{Broker} Bröker~R. {\it Constructing supersingular elliptic curves}. // Journal of Combinatorics and Number Theory, 2009. Vol. 1(3). P. 269--273.
+\bibitem{broker} bröker~R. {\it Constructing supersingular elliptic curves}. // Journal of Combinatorics and Number Theory, 2009. Vol. 1(3). P. 269--273.
 
 \bibitem{CK}
 Canetti~R., Krawczyk~H.
@@ -806,7 +832,7 @@ Canetti~R., Krawczyk~H.
 
 % \bibitem{Edwards2007}
 %Edwards H. M. \newblock A normal form for elliptic curves.
-% --- Bulletin of the AMS, 44: 393–422. --- 2007.
+% --- bulletin of the AMS, 44: 393–422. --- 2007.
   
 %\bibitem{Imp1}
 % Fishbein  D. 
@@ -815,11 +841,11 @@ Canetti~R., Krawczyk~H.
 
 % \bibitem{Gal2}
 % Galbraith S., Petit C.,  Silva J.
-% \newblock Schemes Based On Supersingular Isogeny Problems, Cryptology ePrint Archive: Report 2016/1154. 
+% \newblock Schemes based On Supersingular Isogeny Problems, Cryptology ePrint Archive: Report 2016/1154. 
 % \newblock \url{https://eprint.iacr.org/2016/1154}. --- 2016.
 
 \bibitem{sec}
-Galbraith~S., Petit~C.,  Shani~B, Yan Bo Ti.
+Galbraith~S., Petit~C.,  Shani~b, Yan bo Ti.
 \newblock
 On the Security of Supersingular Isogeny Cryptosystems. --- 
 Cryptology ePrint Archive: Report 2016/859. --- \newblock \url{https://eprint.iacr.org/2016/859}. --- 2016.
@@ -847,15 +873,15 @@ Jaques~S.,  Schanck~J.M.
 % \newblock P.~220-232.
  
 %\bibitem{Static}
-%Kirkwood D., Lackey B.C., McVey J., Motley M., Solinas J.A., Tuller D.
+%Kirkwood D., Lackey b.C., McVey J., Motley M., Solinas J.A., Tuller D.
 %\newblock Failure is not an option: Standardization issues for post-quantum key agreement//
 %Workshop on Cybersecurity in a Post-Quantum World. --- 2015.
 
- %\bibitem{Imp3} Koziel B., Jalali A., Azarderakhsh R., Kermani M., Jao D.  \newblock EON-SIDH: Efficient Implementation of Supersingular Isogeny Diffie-Hellman Key Exchange Protocol on ARM. --- 
+ %\bibitem{Imp3} Koziel b., Jalali A., Azarderakhsh R., Kermani M., Jao D.  \newblock EON-SIDH: Efficient Implementation of Supersingular Isogeny Diffie-Hellman Key Exchange Protocol on ARM. --- 
  %Cryptology ePrint Archive: Report 2016/413. --- 
  %\url{https://eprint.iacr.org/2016/413} --- 2016
  
- %\bibitem{Imp4} Koziel B., Jalali A., Azarderakhsh R., Kermani M. \newblock Fast Hardware Architectures for Supersingular Isogeny Diffie-Hellman Key Exchange on FPGA. --- 
+ %\bibitem{Imp4} Koziel b., Jalali A., Azarderakhsh R., Kermani M. \newblock Fast Hardware Architectures for Supersingular Isogeny Diffie-Hellman Key Exchange on FPGA. --- 
  %Cryptology ePrint Archive: Report 2016/1044. --- 
  %\url{http://eprint.iacr.org/2016/1044} --- 2016.
 
@@ -889,7 +915,7 @@ Silverman~J.H.
   \newblock Claw Finding Algorithms Using Quantum Walk. \url{http://arxiv.org/abs/0708.2584}. --- 2008.
   
   
-\bibitem{Velu}   Vel\'{u}~J. \newblock Isogenies entre courbes elliptiques, C.R. Acad. Sc. Paris, Serie A., 273, pp. 238–241 (1971).
+\bibitem{Velu}   Vel\'{u}~J. \newblock Isog\'{e}nies entre courbes elliptiques, C.R. Acad. Sc. Paris, Serie A., 273, pp. 238–241 (1971).
 
 \bibitem{Wash}
 Washington~L.C.
@@ -897,7 +923,7 @@ Washington~L.C.
 \newblock --- 2008.
 
 % \bibitem{DSIG2} Youngho Yoo, Azarderakhsh R.,  Jalali A., Jao D., Soukharev V. A Post-Quantum Digital Signature Scheme
-%Based on Supersingular Isogenies. 
+%based on Supersingular Isogenies. 
 % Cryptology ePrint Archive: Report 2017/186. --- 
 %\url{https://eprint.iacr.org/2017/186}. --- 2017.
 
