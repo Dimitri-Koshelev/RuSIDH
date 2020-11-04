@@ -412,9 +412,17 @@ TODO!!!
 
 \subsection{Арифметика в $GF(p^2)$}
 
-TODO!!!
+Пусть $p\equiv 3\pmod{4}$, тогда $GF(p^2) = GF(p)(\imath)$, где $\imath^2+1=0$.
+Элементы поля представляются в виде $u=u_0+u_1\cdot\imath$, $u_0, u_1\in GF(p)$.
+Операции в поле $GF(p^2)$ задаются естественным образом.
+\begin{itemize}
+ \item Сложение: $u+v = (u_0+v_0) + (u_1+v_1)\cdot\imath$.
+ \item Умножение: $uv = (u_0v_0-u_1v_1) + (u_0v_1+u_1v_0)\cdot\imath$.
+ \item Мультипликативная инверсия: $u^{-1} = (u_0)(u_0^2+u_1^2)^{-1} + (-u_1)(u_0^2+u_1^2)^{-1}\cdot\imath   $.
+\end{itemize}
 
-$GF(p^2) = GF(p)(\imath)$, где $\imath^2+1=0$.
+
+
 
 \section{Протокол выработки общего ключа}\label{protodesc}
 
