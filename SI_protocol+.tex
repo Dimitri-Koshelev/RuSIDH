@@ -18,6 +18,9 @@
 \usepackage{tabularx}
 \usepackage{lastpage}
 \usepackage{totcount}
+\usepackage{algorithm}
+%\usepackage{algorithmicx}
+\usepackage{algpseudocode}
 
 \newcommand{\No}{\textnumero}
 
@@ -411,7 +414,7 @@ j(M_{A,B})=\frac{256(A^2-3)^3}{A^2-4}.
 [2](x_1,y_1)= \left(\frac{(x_1^2-1)^2}{4x_1(x_1^2+Ax_1+1)} , y_1\frac{(x_1^2-1)(x_1^4+2Ax_1^3+6x_1^2+2Ax_1+1)}{8x_1^2(x_1^2+Ax_1+1)^2}\right);
 \end{multline*}
 \begin{multline*}
-[3](x_1,y_1)= \left(\frac{(x_1^4-4Ax_1-6x_1^2-3)^2x_1}{(4Ax_1^3+3x_1^4+6x_1^2-1)^2}\right., \\
+[3](x_1,y_1)= \left(\frac{(x_1^4-4Ax_1-6x_1^2-3)^2x_1}{(3x_1^4+4Ax_1^3+6x_1^2-1)^2}\right., \\
 \left.y_1\frac{(x_1^4-4Ax_1-6x_1^2-3)(x_1^8+4Ax_1^7+28x_1^6+28x_1^5+(16A^2+6)x_1^4+28Ax_1^3+28x_1^2+4AX_1+1))}{(4Ax_1^3+3x_1^4+6x_1^2-1)^3}\right)
 \end{multline*}
 \large
@@ -573,7 +576,7 @@ $$
 $$
 где $k$ -- параметр стойкости.
 
-\begin{definition}
+\begin{definition}\label{defstoi}
  Протокол выработки общего ключа $\Pi$ с параметром стойкости $k$ является стойким относительно задачи определения сеансового ключа в модели Канетти--Кравчика, если выполнено следующее:
  \begin{enumerate} 
   \item если два честных абонента завершили совпадающие сеансы, то соответствующие сеансовые ключи совпадают; 
@@ -585,8 +588,42 @@ $$
 \begin{theorem} В предположении о сложности задачи SSDDH, протокол из раздела \ref{protodesc} является стойким относительно задачи определения сеансового ключа в модели Канетти--Кравчика.
  \end{theorem}
 \begin{proof}
- Поскольку наш протокол является вариантом протокола из \cite{DF}, то доказательство в точности повторяет рассуждения из \cite[Theorem 6.1]{DF}.
-\end{proof}
+ Поскольку наш протокол является вариантом протокола из \cite{DF}, то доказательство в точности повторяет рассуждения из \cite[Theorem 6.1]{DF}. Для полноты изложения приведем эти рассуждения.
+
+Два честных абонента в совпадающих сеансах вырабатывают одинаковый общий ключ, поэтому первая часть Определения \ref{defstoi} выполнена.
+
+Для доказательства второй части предположим, что существует полиномиальный противник $\mathcal{I}$ с преимуществом $\epsilon$, не являющимся пренебрежимо малой величиной.
+Тогда Алгоритм \ref{algssddh} является полиномиальным различителем для задачи SSDDH.
+
+\begin{algorithm}
+\caption{Различитель для SSDDH}
+ \label{algssddh}
+\textbf{Input}:   $E_A, E_B, \phi_A(P_B),\phi_A{Q_B},\phi_B(P_A),\phi_B(Q_A)$\\
+%\textbf{Output}:  $d$
+ \begin{algorithmic}[1]
+  \State $r\stackrel{R}{\gets}\{1,\dots,k\}$, где $k$ -- максимальное количество активируемых $\mathcal{I}$ сеансов
+  \State Вызвать $\mathcal{I}$ и симулировать протокол для $\mathcal{I}$б за исключением $r$-го активированного сеанса
+  \State Для $r$-го сеанса: $A$ отправляет $A,i,E_A,\phi_A(P_B),\phi_A(Q_B)$, а $B$ отправляет $B,i,E_B,\phi_B(P_A),\phi_A(P_B)$, где $i$ -- идентификатор сеанса
+  \If{$r$-й сеанс выбран $\mathcal{I}$ в качестве тестового сеанса}
+  \State Установить $\mathcal{I}$ как ответ на тестовый запрос
+  \State $d\gets $ вывод $\mathcal{I}$
+  \Else 
+  \State $d\stackrel{R}{\gets}\{0,1\}$
+  \EndIf
+  \State \Return d
+ \end{algorithmic}
+
+\end{algorithm}
+
+Полиномиальность алгоритма очевидна, осталось доказать, что он имеет преимущество, не являющееся пренебрежимо малой величиной.
+Если $r$-й сеанс не является тестовым, то Алгоритм \ref{algssddh} выдает случайный бит и, таким образом, его преимущество равно $0$.
+Иначе, $\mathcal{I}$  успешно завершится с вероятностью $\epsilon$, поскольку симулированный протокол для $\mathcal{I}$  неотличим от действительного.
+Последний случай имеет место с вероятностью $1/k$, следовательно, преимущество различителя для задачи SSDDH равно $\epsilon/k$, что не является пренебрежимо малой величиной.
+ 
+
+ 
+ 
+ \end{proof}
 
 
 
@@ -849,6 +886,7 @@ TODO!!!
 
 \bibitem{EFD} Explicit-Formulas Database. XZ coordinates for Montgomery curves. \url{http://hyperelliptic.org/EFD/g1p/auto-montgom-xz.html}. --- 2020.
 
+\bibitem{Top500} Supercomputer Fugaku. \url{https://www.top500.org/system/179807/}. --- 2020.
 
 %\bibitem{bok}R. broker. Constructing supersingular elliptic curves. --- J. Comb. Number Theory, 1(3):269-273. --- 2009.
 
@@ -1010,8 +1048,6 @@ Washington~L.C.
 %\url{https://eprint.iacr.org/2017/186}. --- 2017.
 
 \bibitem{StartingCurve} Кошелев~Д. {\it Стартовая суперсингулярная эллиптическая кривая для криптографии на изогениях}, \url{https://www.researchgate.net/profile/Dimitri_Koshelev}, 2020.
-
-\bibitem{Top500} Supercomputer Fugaku. \url{https://www.top500.org/system/179807/}. --- 2020.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{thebibliography}
