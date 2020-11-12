@@ -598,10 +598,10 @@ $$
 \begin{algorithm}
 \caption{Различитель для SSDDH}
  \label{algssddh}
-\textbf{Input}:   $E_A, E_B, \phi_A(P_B),\phi_A{Q_B},\phi_B(P_A),\phi_B(Q_A)$\\
-%\textbf{Output}:  $d$
  \begin{algorithmic}[1]
-  \State $r\stackrel{R}{\gets}\{1,\dots,k\}$, где $k$ -- максимальное количество активируемых $\mathcal{I}$ сеансов
+\Require   $E_A, E_B, \phi_A(P_B),\phi_A{Q_B},\phi_B(P_A),\phi_B(Q_A)$
+\Ensure  $d$
+ \State $r\stackrel{R}{\gets}\{1,\dots,k\}$, где $k$ -- максимальное количество активируемых $\mathcal{I}$ сеансов
   \State Вызвать $\mathcal{I}$ и симулировать протокол для $\mathcal{I}$б за исключением $r$-го активированного сеанса
   \State Для $r$-го сеанса: $A$ отправляет $A,i,E_A,\phi_A(P_B),\phi_A(Q_B)$, а $B$ отправляет $B,i,E_B,\phi_B(P_A),\phi_A(P_B)$, где $i$ -- идентификатор сеанса
   \If{$r$-й сеанс выбран $\mathcal{I}$ в качестве тестового сеанса}
@@ -619,10 +619,6 @@ $$
 Если $r$-й сеанс не является тестовым, то Алгоритм \ref{algssddh} выдает случайный бит и, таким образом, его преимущество равно $0$.
 Иначе, $\mathcal{I}$  успешно завершится с вероятностью $\epsilon$, поскольку симулированный протокол для $\mathcal{I}$  неотличим от действительного.
 Последний случай имеет место с вероятностью $1/k$, следовательно, преимущество различителя для задачи SSDDH равно $\epsilon/k$, что не является пренебрежимо малой величиной.
- 
-
- 
- 
  \end{proof}
 
 
@@ -969,7 +965,7 @@ Cryptology ePrint Archive: Report 2016/859. --- \newblock \url{https://eprint.ia
 %\newblock \url{http://eprint.iacr.org/2018/266}.
 %--- 2018.
 
-\bibitem{SIKE}  Jao~D. et al. \newblock Supersingular Isogeny Key Encapsulation\newblock \url{https://sike.org} --- 2017.
+\bibitem{SIKE}  Jao~D. et al. \newblock Supersingular Isogeny Key Encapsulation. \newblock \url{https://sike.org} --- 2017.
 
 
 \bibitem{FFF}
