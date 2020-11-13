@@ -348,7 +348,7 @@ $$\varphi_i:E_i\to E_{i+1}=E_i/\tr{l^{e-i-1}G_i}, G_{i+1}=\varphi_i(G_i). $$
   
 Учитывая сказанное, приведем формулы Велю для случаев $l=2,3$. Здесь и далее эллиптические кривые определены над полем $GF(p^2)$.
 
- \subsubsection*{Случай $l=2$}
+ \subsubsection*{2-изогении}
 Пусть  $P=(X_P,y_P)$ -- точка порядка 2 на $E_{a,b}(GF(p^2))$. Положим $v=3X_P^2+a$, $a'=a-5v$, $b'=b-7vX_P$;
 тогда $E_{a',b'}(GF(p^2)): Y^2=X^3+a'X+b'$ -- 2-изогенная $E_{a,b}$ кривая, и  отображение
  $$
@@ -357,7 +357,7 @@ $$\varphi_i:E_i\to E_{i+1}=E_i/\tr{l^{e-i-1}G_i}, G_{i+1}=\varphi_i(G_i). $$
  задает 2-изогению из $E_{a,b}$ в $E_{a',b'}$ с ядром $\tr{P}$. 
 
    
- \subsubsection*{Случай $l=3$}
+ \subsubsection*{3-изогении}
  Пусть $P=(X_P,y_P)$ -- точка порядка 3 на $E_{a,b}(GF(p^2))$. Положим $v=3X_P^2+a$, $u=4Y_P^3$, $a'=a-5v$, $b'=b-7(u+vX_P)$;
  тогда $E_{a',b'}(GF(p^2)): Y^2=X^3+a'X+b'$ -- 3-изогенная $E_{a,b}$ кривая, и
  отображение
@@ -552,7 +552,7 @@ $(l_A,f)=(l_B,f)=1$;
  и строит изогению $\varphi_B:E_0\to E_B$ с ядром $K_B:=\tr{ P_B+[n_B]Q_B}$.  Абонент $B$  также вычисляет образ $\{\varphi_B(P_A),\varphi_B(Q_A)\}$ и посылает эти точки абоненту $A$ вместе с эллиптической кривой $E_B$ (т.е. ее описанием).
  
  Получив от абонента $B$ набор $E_B, \varphi_B(P_A),\varphi_B(Q_A)$, абонент $A$ строит изогению $\varphi'_A:E_B\to E_{AB}$ с ядром $\tr{ \varphi_B(P_A)+[n_A]\varphi_B(Q_A)}$; абонент $b$ выполняет аналогичные действия.
- В качестве общего ключа  используется $j$-инвариант кривой
+ В качестве общего секретного ключа  используется $j$-инвариант кривой
  $$
  E_{AB}=\varphi'_B(\varphi_A(E_0))=\varphi'_A(\varphi_B(E_0))=E_0/\tr{ P_A+[n_A]Q_A,  P_B+[n_B]Q_B }.
  $$
@@ -940,7 +940,7 @@ TODO!!!
 
 
 
-\bibitem{Adj} Adj~G., Cervantes-Vázquez~D., Chi-Domínguez~J-J.,  Menezes~A., Rodríguez-Henríquez~F. On the cost of computing isogenies between supersingular elliptic curves.  \url{http://eprint.iacr.org/2018/313}. --- 2018.
+\bibitem{Adj} Adj~G., Cervantes-Vázquez~D., Chi-Domínguez~J-J.,  Menezes~A., Rodríguez-Henríquez~F. On the cost of computing isogenies between supersingular elliptic curves.  \url{https://eprint.iacr.org/2018/313}. --- 2018.
 
 
 \bibitem{broker} Bröker~R. {\it Constructing supersingular elliptic curves}. // Journal of Combinatorics and Number Theory, 2009. Vol. 1(3). P. 269--273.
@@ -954,11 +954,13 @@ Canetti~R., Krawczyk~H.
 \newblock --- 2001.
 \newblock ---  P.~453--474.
 
+\bibitem{Costello2} Costello~C. Supersingular isogeny key exchange for beginners. Cryptology ePrint Archive: Report 2019/1321. \url{https://eprint.iacr.org/2019/1321}. --- 2019.
 
-\bibitem{Costello0} Costello~C., Longa~P., Naehrig~M. Efficient algorithms for supersingular isogeny Diffie-Hellman. \url{http://eprint.iacr.org/2016/413} (2016).
+
+\bibitem{Costello0} Costello~C., Longa~P., Naehrig~M. Efficient algorithms for supersingular isogeny Diffie-Hellman. Cryptology ePrint Archive: Report 2016/413. \url{https://eprint.iacr.org/2016/413}. --- 2016.
 
 
-\bibitem{Costello} Costello~C., Longa~P., Naehrig~M., Renes~J., Virdia~F. Improved Classical Cryptanalysis of SIKE in Practice. \url{http://eprint.iacr.org/2019/298} (2019).
+\bibitem{Costello} Costello~C., Longa~P., Naehrig~M., Renes~J., Virdia~F. Improved Classical Cryptanalysis of SIKE in Practice. Cryptology ePrint Archive: Report 2019/298. \url{https://eprint.iacr.org/2019/298}. --- 2019.
 
 %Costello C. et al. Improved Classical Cryptanalysis of SIKE in Practice //IACR International Conference on Public-Key Cryptography. – Springer, 2020. – P. 505-534.
 
@@ -968,9 +970,8 @@ Canetti~R., Krawczyk~H.
 % \newblock \url{https://eprint.iacr.org/2016/413}. --- 2016.
 
 
-%\bibitem{Costello2} Costello~C. Supersingular isogeny key exchange for beginners. \url{http://eprint.iacr.org/2019/1321}. --- 2019.
 
-%\bibitem{Costello3} Costello~C., Smith~B. Montgomery curves and their arithmetic: The case of large characteristic fields. \url{http://eprint.iacr.org/2017/212} --- 2017.
+\bibitem{Costello3} Costello~C., Smith~B. Montgomery curves and their arithmetic: The case of large characteristic fields. Cryptology ePrint Archive: Report 2017/212. \url{https://eprint.iacr.org/2017/212} --- 2017.
  
  
   \bibitem{DF} De Feo~L., Jao~D., Plût~J.   Towards quantum-resistant cryptosystems from supersingular elliptic curve isogenies.  // Journal of Math. Cryptology, 2014. Vol. 8(3). P. 209--247. 
@@ -1012,7 +1013,7 @@ Cryptology ePrint Archive: Report 2016/859. --- \newblock \url{https://eprint.ia
 % Galbraith S.
 %\newblock Authenticated key exchange for SIDH. ---
 % Cryptology ePrint Archive: Report 2018/266
-%\newblock \url{http://eprint.iacr.org/2018/266}.
+%\newblock \url{https://eprint.iacr.org/2018/266}.
 %--- 2018.
 
 \bibitem{SIKE}  Jao~D. et al. \newblock Supersingular Isogeny Key Encapsulation. \newblock \url{https://sike.org} --- 2017.
@@ -1040,12 +1041,13 @@ Jaques~S.,  Schanck~J.M.
  
  %\bibitem{Imp4} Koziel b., Jalali A., Azarderakhsh R., Kermani M. \newblock Fast Hardware Architectures for Supersingular Isogeny Diffie-Hellman Key Exchange on FPGA. --- 
  %Cryptology ePrint Archive: Report 2016/1044. --- 
- %\url{http://eprint.iacr.org/2016/1044} --- 2016.
+ %\url{https://eprint.iacr.org/2016/1044} --- 2016.
 
-\bibitem{Kutas} Kutas P., Martindale C., Panny L., Petit C.,  Stange K.E. Weak instances of SIDH variants under improved torsion-point attacks. \url{http://eprint.iacr.org/2020/633}. --- 2020.
+\bibitem{Kutas} Kutas P., Martindale C., Panny L., Petit C.,  Stange K.E. Weak instances of SIDH variants under improved torsion-point attacks. 
+Cryptology ePrint Archive: Report 2020/633. \url{https://eprint.iacr.org/2020/633}. --- 2020.
 
  
-%\bibitem{RoSt}  Rostovtsev A., Stolbunov A.: Public-key cryptosystem based on isogenies. --- Cryptology ePrint Archive, Report 2006/145. --- \url{http://eprint.iacr.org/2006/145}. --- 2006.
+%\bibitem{RoSt}  Rostovtsev A., Stolbunov A.: Public-key cryptosystem based on isogenies. --- Cryptology ePrint Archive, Report 2006/145. --- \url{https://eprint.iacr.org/2006/145}. --- 2006.
 
 \bibitem{Miller} Miller V.  The Weil Pairing, and Its Efficient Calculation. J. Cryptology. 17. 235-261. --- 2004. 
 
@@ -1066,7 +1068,7 @@ Montgomery P.~L.
 \bibitem{Piz2}  Pizer A. Ramanujan graphs. In Computational perspectives on number theory (Chicago, IL, 1995), volume 7 of
 AMS/IP Stud. Adv. Math., pages 159–178. Amer. Math. Soc., Providence, RI, 1998.
 
-%\bibitem{Renes} Renes~J. Computing isogenies between Montgomery curves using the action of (0,0). \url{http://eprint.iacr.org/2017/1198}. ---   2017.
+%\bibitem{Renes} Renes~J. Computing isogenies between Montgomery curves using the action of (0,0). \url{https://eprint.iacr.org/2017/1198}. ---   2017.
 
 
 \bibitem{Silverman}
